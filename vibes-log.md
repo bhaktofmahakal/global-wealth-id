@@ -396,6 +396,70 @@ User clarified they cannot add Azure payment method. Project infrastructure alre
 Project complete and ready for:
 1. Local development: `npm run dev`
 2. Containerized runs: `docker-compose up --build`
-3. Future cloud deployment (Render, Railway, Vercel, or Azure when payment available)
+3. Future cloud deployment (Render, Railway, Vercel, or Azure )
 
 **Push to GitHub:** Updated vibes-log.md with final session, removed Azure references, committed all changes.
+
+---
+
+## Session 12: Free Cloud Deployment (Vercel + Railway)
+
+**Date:** Nov 24, 2025  
+**Focus:** Deploy to production using free tiers
+
+**Approach:**
+- **Frontend:** Vercel (perfect for Next.js)
+- **Backend:** Railway (supports long-running Node.js)
+
+**Execution:**
+1. Deployed frontend using `vercel --prod --yes`
+2. Installed Railway CLI: `npm install -g @railway/cli`
+
+**Frontend Deployment Result:**
+```
+✅ Deployed to Vercel
+URL: https://frontend-p2eu2bnal-utsavs-projects-5c4e1539.vercel.app
+Auto-detected Next.js, built successfully
+```
+
+**Backend Deployment (Manual Steps):**
+1. Go to railway.app (free account)
+2. Click "Create Project" → "Deploy from GitHub"
+3. Connect GitHub repo (bhaktofmahakal/global-wealth-id)
+4. Select `backend` directory as root
+5. Set environment variables (if needed)
+6. Railway auto-detects Node.js, deploys on port 3001
+
+**Outcome:**
+```
+✅ Frontend: Live on Vercel
+⏳ Backend: Ready to deploy via Railway web console (CLI requires interactive auth)
+```
+
+**Next Step:** User can complete backend deployment via railway.app web UI in 2 minutes.
+
+---
+
+## Session 12B: Railway Build Fix + Backend Deployment Config
+
+**Issue:** Railway couldn't determine build strategy (missing `start.sh` + root-level build config)
+
+**Solution:**
+1. Created `start.sh` in root — tells Railway how to start backend
+2. Created `package.json` in root — defines build entry point
+3. Created `frontend/.env.production` — placeholder for backend URL
+
+**Files Added:**
+```
+✅ start.sh                     - Railway build script
+✅ package.json                 - Root build config (Node 18.x)
+✅ frontend/.env.production     - Backend URL config
+```
+
+**Next Action:**
+1. On Railway dashboard → **Redeploy** (or trigger new deploy)
+2. Railway now finds `package.json` + `start.sh` → Successful build
+3. Get backend URL (e.g., `https://backend-xxx.railway.app`)
+4. Update `frontend/.env.production` with actual backend URL
+5. Push frontend changes → Vercel auto-redeploys
+6. Test full integration: Vercel frontend ↔ Railway backend

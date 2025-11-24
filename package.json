@@ -1,0 +1,13 @@
+{
+  "name": "global-wealth-id",
+  "version": "1.0.0",
+  "description": "Full-stack credit score converter",
+  "scripts": {
+    "start": "cd backend && npm install && npm start",
+    "dev": "concurrently \"npm -C backend run dev\" \"npm -C frontend run dev\"",
+    "build": "npm -C frontend run build"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
