@@ -489,3 +489,39 @@ Auto-detected Next.js, built successfully
 - Runs: `cd backend && npm install && npm start`
 - Backend deploys successfully to Railway
 - Provides public URL for integration
+
+---
+
+## Session 12D: Root-Level Dockerfile for Railway
+
+**Issue:** Railway couldn't find `Dockerfile` in root (only in backend/)
+
+**Solution:**
+1. Created root-level `Dockerfile` that:
+   - Uses Node 18-Alpine base image
+   - Copies `backend/package.json` files
+   - Copies `backend/src` directory
+   - Exposes port 3001
+   - Runs `node src/index.js`
+2. Updated `railway.json` to use Dockerfile builder
+
+**Deployment Architecture:**
+```
+u:\Git Uploads\global-wealth-id\
+├── Dockerfile              (Railway entry point)
+├── railway.json            (Build config)
+├── Procfile                (Fallback start command)
+├── backend/
+│   ├── Dockerfile          (original, for local Docker)
+│   ├── src/index.js        (backend server)
+│   └── package.json
+└── frontend/
+    ├── .env.production     (backend URL)
+    └── (Next.js files)
+```
+
+**Ready for Railway:**
+- Railway finds root Dockerfile ✅
+- Builds Node.js app from backend/ files ✅
+- Starts server on port 3001 ✅
+- Ready to redeploy
