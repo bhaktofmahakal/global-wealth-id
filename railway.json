@@ -1,10 +1,10 @@
 {
   "build": {
-    "builder": "dockerfile",
-    "buildpacks": ["nixpacks"]
+    "builder": "dockerfile"
   },
   "deploy": {
-    "startCommand": "cd backend && npm install && npm start",
-    "rootDirectory": "backend"
+    "startCommand": "node src/index.js",
+    "restartPolicyType": "on-failure",
+    "restartPolicyMaxRetries": 5
   }
 }
