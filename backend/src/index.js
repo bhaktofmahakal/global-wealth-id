@@ -10,6 +10,10 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Global Wealth ID Backend' });
+});
+
 app.use('/api', routes);
 
 app.listen(PORT, () => {

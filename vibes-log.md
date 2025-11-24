@@ -612,3 +612,67 @@ GitHub (Source)
 3. Select target country (e.g., UK)
 4. Click "Convert"
 5. Backend returns converted score in real-time ✅
+
+---
+
+## Session 12G: Fix Environment Variables on Vercel
+
+**Issue:** Frontend getting 404 on API calls (`//api/recent`, `//api/convert`)
+
+**Root Cause:** Vercel doesn't read `.env.production` files - environment variables must be set in Vercel dashboard, not as files
+
+**Solution:**
+1. Go to vercel.com → Select "frontend" project
+2. **Settings** → **Environment Variables**
+3. Add:
+   - **Name**: `NEXT_PUBLIC_BACKEND_URL`
+   - **Value**: `https://global-wealth-id.onrender.com`
+   - **Environments**: Production
+4. Click **Save**
+5. Go to **Deployments** → **Click latest deployment** → **Redeploy**
+
+**Why This Works:**
+- Vercel injects env vars at build time
+- `.env.production` files are ignored by Vercel
+- Environment variables must be set in dashboard for production
+
+**After Redeploy:**
+- Frontend will build with correct backend URL
+- API calls go to `https://global-wealth-id.onrender.com/api/convert`
+- App should work end-to-end ✅
+
+---
+
+## Session 12H: Final Fixes - URL Normalization + Root Endpoint
+
+**Issues Fixed:**
+
+1. **Double-slash problem:** `/api/convert` with trailing slash backend URL
+   - Fixed: Added `getBackendUrl()` function to strip trailing slashes
+   - Ensures: `https://backend-url/api/convert` (not `//api/convert`)
+
+2. **Backend 404 on root:**
+   - Fixed: Added root endpoint `GET /` returning JSON health check
+   - Ensures: Render backend responds to any request
+
+**Code Changes:**
+- `frontend/app/page.js`: URL normalization function
+- `backend/src/index.js`: Root health check endpoint
+- `frontend/lib/api.js`: Created utility for future use
+
+**Status:**
+✅ Code fixes pushed to GitHub
+✅ Backend will redeploy automatically (new code)
+⏳ Frontend needs Vercel env var set (requires dashboard)
+
+**Final Step for User:**
+1. Open: https://vercel.com
+2. Select "frontend" project
+3. **Settings** → **Environment Variables**
+4. Add:
+   - **Key:** `NEXT_PUBLIC_BACKEND_URL`
+   - **Value:** `https://global-wealth-id.onrender.com`
+   - **Environments:** Production ✓
+5. **Save** and **Redeploy**
+
+Then app should work fully! ✅

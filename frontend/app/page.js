@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ScoreForm from '../components/ScoreForm'
 import RecentChecks from '../components/RecentChecks'
 import ConvertedResult from '../components/ConvertedResult'
+import { convertScore, getRecent } from '../lib/api'
 
 export default function Home() {
   const [result, setResult] = useState(null)
@@ -15,13 +16,7 @@ export default function Home() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'}/api/convert`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      if (!res.ok) throw new Error('Conversion failed')
-      const resultData = await res.json()
+      const resultData = await convertScore(data)
       setResult(resultData)
       // Refresh recent
       fetchRecent()
@@ -34,8 +29,7 @@ export default function Home() {
 
   const fetchRecent = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'}/api/recent`)
-      const data = await res.json()
+      const data = await getRecent()
       setRecent(data)
     } catch (err) {
       console.error('Failed to fetch recent:', err)
