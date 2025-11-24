@@ -1,0 +1,101 @@
+
+> global-wealth-id-frontend@1.0.0 test
+> playwright test
+
+
+Running 5 tests using 5 workers
+
+[1A[2K[1/5] [chromium] › tests\conversion.spec.js:35:5 › should handle form with different countries
+[1A[2K[2/5] [chromium] › tests\conversion.spec.js:50:5 › should handle optional user name field
+[1A[2K[3/5] [chromium] › tests\conversion.spec.js:3:5 › should convert credit score and display result
+[1A[2K[4/5] [chromium] › tests\conversion.spec.js:29:5 › should show Recent Checks heading
+[1A[2K[5/5] [chromium] › tests\conversion.spec.js:18:5 › should display form with all fields
+[1A[2K  1) [chromium] › tests\conversion.spec.js:29:5 › should show Recent Checks heading ────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Recent Checks')
+    Expected: visible
+    Error: strict mode violation: locator('text=Recent Checks') resolved to 2 elements:
+        1) <h2 class="text-xl font-semibold mb-4">Recent Checks</h2> aka getByRole('heading', { name: 'Recent Checks' })
+        2) <p class="text-gray-500">No recent checks</p> aka getByText('No recent checks')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Recent Checks')[22m
+
+
+      30 |   await page.goto('/');
+      31 |
+    > 32 |   await expect(page.locator('text=Recent Checks')).toBeVisible();
+         |                                                    ^
+      33 | });
+      34 |
+      35 | test('should handle form with different countries', async ({ page }) => {
+        at u:\Git Uploads\global-wealth-id\frontend\tests\conversion.spec.js:32:52
+
+    Error Context: test-results\conversion-should-show-Recent-Checks-heading-chromium\error-context.md
+
+
+[1A[2K  2) [chromium] › tests\conversion.spec.js:3:5 › should convert credit score and display result ────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=TestUser')
+    Expected: visible
+    Error: strict mode violation: locator('text=TestUser') resolved to 3 elements:
+        1) <p class="text-sm text-gray-600">User: TestUser | Time: 11/24/2025, 8:37:30 PM</p> aka getByText('User: TestUser | Time: 11/24/')
+        2) <p class="text-sm text-gray-600">User: TestUser | 11/24/2025, 8:37:30 PM</p> aka getByText('User: TestUser | 11/24/2025,')
+        3) <p class="text-sm text-gray-600">User: TestUser2 | 11/24/2025, 8:37:30 PM</p> aka getByText('User: TestUser2 | 11/24/2025')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=TestUser')[22m
+
+
+      13 |   await expect(page.locator('text=Converted Score')).toBeVisible({ timeout: 5000 });
+      14 |   await expect(page.locator('text=From USA: 700 → To UK:')).toBeVisible();
+    > 15 |   await expect(page.locator('text=TestUser')).toBeVisible();
+         |                                               ^
+      16 | });
+      17 |
+      18 | test('should display form with all fields', async ({ page }) => {
+        at u:\Git Uploads\global-wealth-id\frontend\tests\conversion.spec.js:15:47
+
+    Error Context: test-results\conversion-should-convert-credit-score-and-display-result-chromium\error-context.md
+
+
+[1A[2K  3) [chromium] › tests\conversion.spec.js:35:5 › should handle form with different countries ──────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=TestUser2')
+    Expected: visible
+    Error: strict mode violation: locator('text=TestUser2') resolved to 2 elements:
+        1) <p class="text-sm text-gray-600">User: TestUser2 | Time: 11/24/2025, 8:37:30 PM</p> aka getByText('User: TestUser2 | Time: 11/24')
+        2) <p class="text-sm text-gray-600">User: TestUser2 | 11/24/2025, 8:37:30 PM</p> aka getByText('User: TestUser2 | 11/24/2025')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=TestUser2')[22m
+
+
+      45 |   await expect(page.locator('text=Converted Score')).toBeVisible({ timeout: 5000 });
+      46 |   await expect(page.locator('text=From Germany: 650 → To Japan:')).toBeVisible();
+    > 47 |   await expect(page.locator('text=TestUser2')).toBeVisible();
+         |                                                ^
+      48 | });
+      49 |
+      50 | test('should handle optional user name field', async ({ page }) => {
+        at u:\Git Uploads\global-wealth-id\frontend\tests\conversion.spec.js:47:48
+
+    Error Context: test-results\conversion-should-handle-form-with-different-countries-chromium\error-context.md
+
+
+[1A[2K  3 failed
+    [chromium] › tests\conversion.spec.js:3:5 › should convert credit score and display result ─────
+    [chromium] › tests\conversion.spec.js:29:5 › should show Recent Checks heading ─────────────────
+    [chromium] › tests\conversion.spec.js:35:5 › should handle form with different countries ───────
+  2 passed (9.2s)
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

@@ -1,0 +1,26 @@
+{
+  "name": "global-wealth-id-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "next": "14.0.0",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8.0.9",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.0",
+    "@playwright/test": "^1.40.0"
+  }
+}

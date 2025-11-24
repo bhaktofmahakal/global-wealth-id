@@ -1,0 +1,51 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - heading "Global Wealth ID" [level=1] [ref=e3]
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - heading "Convert Credit Score" [level=2] [ref=e7]
+          - generic [ref=e8]:
+            - generic [ref=e9]: Credit Score
+            - spinbutton [ref=e10]: "700"
+          - generic [ref=e11]:
+            - generic [ref=e12]: From Country
+            - combobox [ref=e13]:
+              - option "USA" [selected]
+              - option "UK"
+              - option "Germany"
+              - option "Japan"
+              - option "Australia"
+          - generic [ref=e14]:
+            - generic [ref=e15]: To Country
+            - combobox [ref=e16]:
+              - option "USA"
+              - option "UK" [selected]
+              - option "Germany"
+              - option "Japan"
+              - option "Australia"
+          - generic [ref=e17]:
+            - generic [ref=e18]: User Name (Optional)
+            - textbox "Your name" [ref=e19]: TestUser
+          - button "Convert" [ref=e20] [cursor=pointer]
+        - generic [ref=e21]:
+          - heading "Converted Score" [level=3] [ref=e22]
+          - paragraph [ref=e23]: "From USA: 700 → To UK: 727"
+          - paragraph [ref=e24]: "User: TestUser | Time: 11/24/2025, 8:37:30 PM"
+      - generic [ref=e26]:
+        - heading "Recent Checks" [level=2] [ref=e27]
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - paragraph [ref=e30]: USA 700 → UK 727
+            - paragraph [ref=e31]: "User: TestUser | 11/24/2025, 8:37:30 PM"
+          - listitem [ref=e32]:
+            - paragraph [ref=e33]: Germany 650 → Japan 620
+            - paragraph [ref=e34]: "User: TestUser2 | 11/24/2025, 8:37:30 PM"
+          - listitem [ref=e35]:
+            - paragraph [ref=e36]: USA 725 → UK 773
+            - paragraph [ref=e37]: "User: Anonymous | 11/24/2025, 8:37:30 PM"
+  - alert [ref=e38]
+```
