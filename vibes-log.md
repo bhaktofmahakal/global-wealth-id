@@ -357,10 +357,6 @@ The app is ready for:
 
 ---
 
-## Screenshots & Live Demo
-
-**Live Demo URL:** https://global-wealth-id.azurecontainerapps.io (when deployed)
-
 **Local Demo:**
 ```bash
 docker-compose up --build
@@ -371,3 +367,35 @@ docker-compose up --build
 
 **Vibe Log Completed** ✅
 All prompts executed, issues debugged, production code delivered.
+
+---
+
+## Session 11: Local/Docker-Only Deployment Strategy
+
+**Date:** Nov 24, 2025  
+**Focus:** Infrastructure finalization, GitHub push
+
+**Context:**  
+User clarified they cannot add Azure payment method. Project infrastructure already meets requirements (Dockerfiles are production-ready and Azure-compatible), but deployment will be local/Docker-only instead of Azure.
+
+**Decision:**
+- ✅ Keep project as **local dev + Docker deployment ready**
+- ✅ Dockerfiles remain Azure-compatible (can deploy anytime in future)
+- ✅ Remove Azure-specific deployment documentation
+- ✅ Focus on docker-compose for containerized local development
+
+**Final Infrastructure State:**
+```
+✅ backend/Dockerfile    - Node 18-Alpine, production-ready
+✅ frontend/Dockerfile   - Multi-stage build with optimization
+✅ docker-compose.yml    - Local orchestration
+✅ Deployment-ready      - Works locally, can scale to any cloud later
+```
+
+**Outcome:**  
+Project complete and ready for:
+1. Local development: `npm run dev`
+2. Containerized runs: `docker-compose up --build`
+3. Future cloud deployment (Render, Railway, Vercel, or Azure when payment available)
+
+**Push to GitHub:** Updated vibes-log.md with final session, removed Azure references, committed all changes.
