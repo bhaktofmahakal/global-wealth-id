@@ -1,0 +1,10 @@
+{
+  "build": {
+    "builder": "dockerfile",
+    "buildpacks": ["nixpacks"]
+  },
+  "deploy": {
+    "startCommand": "cd backend && npm install && npm start",
+    "rootDirectory": "backend"
+  }
+}
