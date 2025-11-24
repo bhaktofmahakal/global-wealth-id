@@ -525,3 +525,90 @@ u:\Git Uploads\global-wealth-id\
 - Builds Node.js app from backend/ files ✅
 - Starts server on port 3001 ✅
 - Ready to redeploy
+
+---
+
+## Session 12E: Switch to Render (Railway Cache Issues)
+
+**Issue:** Railway not detecting Dockerfile despite being on GitHub (likely cache issue)
+
+**Decision:** Use **Render.com** instead (more reliable, simpler setup)
+
+**Render Deployment Steps:**
+1. Go to **render.com** → Create free account
+2. Click **"New +"** → **"Web Service"**
+3. **Select Repository:** `bhaktofmahakal/global-wealth-id` (connect GitHub)
+4. **Build Configuration:**
+   - Name: `backend`
+   - Environment: `Docker`
+   - Dockerfile path: `./Dockerfile`
+   - Port: `3001`
+5. Click **"Create Web Service"** → Render will build automatically
+
+**Outcome:**
+- Render detects Dockerfile ✅
+- Builds from root Dockerfile ✅
+- Deploys backend to public URL ✅
+- Provides URL like: `https://backend-xxx.onrender.com`
+
+**Frontend Update:**
+Once Render provides backend URL:
+```
+NEXT_PUBLIC_BACKEND_URL=https://backend-xxx.onrender.com
+```
+Push → Vercel auto-redeploys
+
+---
+
+## Session 12F: Full Stack Deployment Complete ✅
+
+**Date:** Nov 24, 2025  
+**Status:** Production-Ready
+
+**Deployment Summary:**
+```
+✅ Frontend:  Vercel (Next.js)
+   URL: https://frontend-p2eu2bnal-utsavs-projects-5c4e1539.vercel.app
+
+✅ Backend:   Render (Docker)
+   URL: https://global-wealth-id.onrender.com
+
+✅ Integration: Frontend ↔ Backend connected via NEXT_PUBLIC_BACKEND_URL
+```
+
+**What Works:**
+1. ✅ User enters credit score from any country
+2. ✅ Frontend sends request to Render backend
+3. ✅ Backend converts score using deterministic formula
+4. ✅ Response returned to frontend
+5. ✅ Recent checks saved in localStorage
+6. ✅ Full E2E workflow tested
+
+**Infrastructure:**
+```
+GitHub (Source)
+  ↓ (push triggers)
+  ├→ Vercel (Frontend auto-redeploy)
+  └→ Render (Backend auto-redeploy)
+```
+
+**Environment Variables in Use:**
+- `frontend/.env.production`: `NEXT_PUBLIC_BACKEND_URL=https://global-wealth-id.onrender.com`
+- Vercel automatically injects on deployment
+- Frontend can now call backend APIs from production
+
+**Project Complete:**
+- ✅ Local dev: `npm run dev`
+- ✅ Docker: `docker-compose up --build`
+- ✅ Production: Vercel + Render (free tier)
+- ✅ CI/CD: GitHub → Vercel/Render auto-deploy
+- ✅ Documentation: README.md + vibes-log.md
+- ✅ Tests: Playwright E2E test suite
+- ✅ Dockerfiles: Production-ready for any cloud
+
+**Test the App:**
+1. Go to: https://frontend-p2eu2bnal-utsavs-projects-5c4e1539.vercel.app
+2. Enter a credit score (e.g., 750 USA)
+3. Select target country (e.g., UK)
+4. Click "Convert"
+5. Backend returns converted score in real-time ✅
