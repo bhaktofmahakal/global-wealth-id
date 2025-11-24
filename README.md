@@ -432,7 +432,7 @@ MIT
 
 ## 👤 Author
 
-Built with Cline AI Agent
+Built with Cline AI + roo code Agent
 
 **GitHub Repository:** https://github.com/bhaktofmahakal/global-wealth-id.git
 
