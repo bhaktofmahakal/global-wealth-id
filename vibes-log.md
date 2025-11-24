@@ -463,3 +463,29 @@ Auto-detected Next.js, built successfully
 4. Update `frontend/.env.production` with actual backend URL
 5. Push frontend changes → Vercel auto-redeploys
 6. Test full integration: Vercel frontend ↔ Railway backend
+
+---
+
+## Session 12C: Railway Procfile Fix
+
+**Issue:** Railway still couldn't build—doesn't recognize `start.sh` in root
+
+**Root Cause:** Railway looks for `Procfile` (standard Heroku/Railway format), not custom scripts
+
+**Solution:**
+1. Created `Procfile` with command: `web: cd backend && npm install && npm start`
+2. Updated `railway.json` for explicit build config
+3. Updated root `package.json` to properly reference backend
+
+**Files Added/Updated:**
+```
+✅ Procfile              - Railway start command (web: cd backend && npm install && npm start)
+✅ railway.json          - Build configuration
+✅ package.json          - Updated start script
+```
+
+**Expected Outcome:**
+- Railway recognizes Procfile as the build standard
+- Runs: `cd backend && npm install && npm start`
+- Backend deploys successfully to Railway
+- Provides public URL for integration
