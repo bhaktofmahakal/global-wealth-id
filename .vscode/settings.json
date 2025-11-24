@@ -1,5 +1,5 @@
 {
-    "zencoder.mcpServers": {
+    "cline.mcpServers": {
         "playwright": {
             "command": "npx",
             "args": [
